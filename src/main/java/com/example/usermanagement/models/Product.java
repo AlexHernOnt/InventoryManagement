@@ -10,6 +10,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //Unique name because quantity is already accounted for with stock attribute
     @Column(nullable = false, unique = true)
     private String name;
 
@@ -19,6 +20,8 @@ public class Product {
     @Column(nullable = false)
     private int stock;
 
+    //Constructors
+
     public Product() {
     }
 
@@ -27,6 +30,8 @@ public class Product {
         this.price = price;
         this.stock = stock;
     }
+
+    //Getters and Setters
 
     public Long getId() {
         return id;
