@@ -1,5 +1,6 @@
 package com.example.usermanagement.controllers;
 
+import com.example.usermanagement.models.Notification;
 import com.example.usermanagement.models.Product;
 import com.example.usermanagement.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,7 @@ public class ProductController {
      * @return the updated product with reduced stock, or null if not found or insufficient stock
      */
     @PutMapping("/reduceStock/{id}/{quantity}")
-    public Product reduceStock(@PathVariable Long id, @PathVariable int quantity) {
+    public Notification reduceStock(@PathVariable Long id, @PathVariable int quantity) {
         return productService.reduceStock(id, quantity);
     }
 

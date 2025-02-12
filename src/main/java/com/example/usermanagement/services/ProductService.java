@@ -1,5 +1,7 @@
 package com.example.usermanagement.services;
 
+import com.example.usermanagement.models.Notification;
+import com.example.usermanagement.models.NotificationType;
 import com.example.usermanagement.models.Product;
 import com.example.usermanagement.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import java.util.Optional;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final NotificationService ns;
 
     /**
      * Constructs a ProductService with the specified ProductRepository.
@@ -21,8 +24,9 @@ public class ProductService {
      * @param productRepository the product repository
      */
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, NotificationService ns) {
         this.productRepository = productRepository;
+        this.ns = ns;
     }
 
     /**
@@ -89,15 +93,20 @@ public class ProductService {
      * @param quantity the quantity to reduce
      * @return the updated product with reduced stock, or null if not found or insufficient stock
      */
-    public Product reduceStock(Long id, int quantity) {
+    public Notification reduceStock(Long id, int quantity) {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (optionalProduct.isPresent()) {
             Product product = optionalProduct.get();
             int newStockQuantity = product.getStock() - quantity;
             if (newStockQuantity >= 0) {
                 product.setStock(newStockQuantity);
-                return productRepository.save(product);
+                return null;
             }
+            else {
+                return ns.saveNotification(new Notification("Not enough " + product.getName(), NotificationType.LOW_INVENTORY));
+
+            }
+
         }
         return null;
     }
