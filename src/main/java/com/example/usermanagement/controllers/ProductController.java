@@ -28,11 +28,6 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
-//    @PutMapping("/reduceStock/{Id}")
-//    public String reduceStock(@Valid @RequestBody Product product) {
-//        stockService.reduceStock(productId, product.getStock());
-//    }
-
     @PostMapping
     public Product addProduct(@RequestBody Product product) {
         return productService.createProduct(product);
@@ -40,8 +35,13 @@ public class ProductController {
 
 
     @PutMapping("/{id}")
-    public Product reduceStock(@PathVariable Long id, @RequestBody Product product) {
-        return productService.updateProduct(product);
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
+        return productService.updateProduct(id, product);
+    }
+
+    @PutMapping("/reduceStock/{id}/{quantity}")
+    public Product reduceStock(@PathVariable Long id, @PathVariable int quantity) {
+        return productService.reduceStock(id, quantity);
     }
 
     @DeleteMapping("/removeProduct")
