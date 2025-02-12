@@ -1,6 +1,7 @@
 package com.example.usermanagement.controllers;
 
 import com.example.usermanagement.models.Order;
+import com.example.usermanagement.models.OrderProduct;
 import com.example.usermanagement.services.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class OrderController {
     public OrderController(OrderService orderService) { this.orderService = orderService; }
 
     @GetMapping
-    public List<Order> getAllOrders() {return this.orderService.getAllOrders();}
+    public List<OrderProduct> getAllOrders() {return this.orderService.getAllOrders();}
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
