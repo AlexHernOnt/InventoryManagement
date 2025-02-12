@@ -2,7 +2,7 @@
 
 ---
 
-## Overview
+## 📚 Overview
 The Inventory Management System is designed to help store managers track products, manage stock quantities, and handle sales. The system provides functionalities for adding, updating, listing, and deleting products. It also integrates with an Order Management System to manage orders and update inventory when sales are made.
 
 ## Features
