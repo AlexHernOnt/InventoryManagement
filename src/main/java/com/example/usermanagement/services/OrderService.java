@@ -1,14 +1,13 @@
 package com.example.usermanagement.services;
 
 import com.example.usermanagement.models.Order;
+import com.example.usermanagement.models.OrderProduct;
 import com.example.usermanagement.repositories.OrderProductRepository;
 import com.example.usermanagement.repositories.OrderRepository;
-import com.example.usermanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Service class for managing order operations.
@@ -25,7 +24,7 @@ public class OrderService {
         this.orderProductRepository = orderProductRepository;
     }
 
-    public List<Order> getAllOrders(){ return null; }
+    public List<OrderProduct> getAllOrders(){ return orderProductRepository.findOrders(); }
 
     public Order getOrderById(Long id) { return null; }
 

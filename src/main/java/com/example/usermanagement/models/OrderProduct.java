@@ -1,10 +1,10 @@
 package com.example.usermanagement.models;
 
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "orderProduct")
 public class OrderProduct {
 
     @EmbeddedId
