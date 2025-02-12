@@ -1,21 +1,24 @@
 package com.example.usermanagement.models;
 
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "Order_product")
 public class OrderProduct {
 
     @EmbeddedId
     private OrderProductKey orderProductKey;
 
     @ManyToOne
+    @JoinColumn(name = "order_id")
     @MapsId("orderId")
+
     private Order order;
 
 
     @ManyToOne
+    @JoinColumn(name = "product_id")
     @MapsId("productId")
     private Product product;
 
