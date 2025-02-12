@@ -4,5 +4,6 @@ public enum State {
 
     COMPLETED,
     NO_COMPLETED,
+    CANCELLED,
 
 }
