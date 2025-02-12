@@ -1,6 +1,7 @@
 package com.example.usermanagement.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,7 +14,7 @@ public class OrderProduct {
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     @MapsId("orderId")
-
+    @JsonIgnore
     private Order order;
 
 

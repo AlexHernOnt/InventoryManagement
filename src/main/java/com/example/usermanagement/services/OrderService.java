@@ -8,6 +8,7 @@ import com.example.usermanagement.models.State;
 import com.example.usermanagement.repositories.OrderProductRepository;
 import com.example.usermanagement.repositories.OrderRepository;
 import com.example.usermanagement.repositories.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.Optional;
  * Service class for managing order operations.
  */
 @Service
+@Transactional
 public class OrderService {
 
     private final OrderRepository orderRepository;
@@ -37,23 +39,10 @@ public class OrderService {
 
     public Order getOrderById(Long id) { return this.orderRepository.findById(id).orElse(null);}
 
-    public Order createOrder(Order order){
-        Order savedOrder = this.orderRepository.save(order);
-
-        for (OrderProduct orderProduct : order.getOrderproducts()){
-            Optional<Product> product = productRepository.findById(orderProduct.getProduct().getId());
-
-            if(product == null){
-                throw new RuntimeException("Error");
-            }
-
-            orderProduct.setOrder(savedOrder);
-            orderProduct.setProduct(product.get());
-
-            orderProductRepository.save(orderProduct);
-
-        }
-        return savedOrder; }
+    public Order createOrder(Order order) {
+        Order savedOrder = orderRepository.save(order);
+        return savedOrder;
+    }
 
     public Order changeStatus(Long id, String status){
         Order order = this.orderRepository.findById(id).orElse(null);
@@ -68,6 +57,28 @@ public class OrderService {
         }
         order.setState(State.valueOf(status));
         return order;
+    }
+
+    public Order createOrderProducts(Long id, List<OrderProduct> orderProducts) {
+        Order order = this.orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        for (OrderProduct orderProduct : orderProducts) {
+            orderProduct.setOrder(order);
+
+            Product product = productRepository.findById(orderProduct.getProduct().getId())
+                    .orElseThrow(() -> new RuntimeException("Product not found"));
+
+            orderProduct.setProduct(product);
+
+
+            orderProductRepository.save(orderProduct);
+
+
+            order.getOrderproducts().add(orderProduct);
+        }
+
+        return orderRepository.save(order);
     }
 }
 

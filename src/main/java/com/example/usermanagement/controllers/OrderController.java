@@ -27,7 +27,7 @@ public class OrderController {
     public List<Order> getAllOrders() {return this.orderService.getAllOrders();}
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    //@ResponseStatus(HttpStatus.CREATED)
     public Order createOrder(@RequestBody Order order) { return this.orderService.createOrder(order);}
 
     @GetMapping("/{id}")
@@ -39,6 +39,9 @@ public class OrderController {
     public Order switchStatus(@PathVariable Long id, String status) {
         return this.orderService.changeStatus(id, status);
     }
+
+    @PostMapping("/{id}")
+    public Order createOrderProducts(@PathVariable long id, @RequestBody List<OrderProduct> orderProducts) { return this.orderService.createOrderProducts(id, orderProducts);}
 
 }
 
