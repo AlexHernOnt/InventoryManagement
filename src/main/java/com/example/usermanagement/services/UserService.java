@@ -1,6 +1,5 @@
 package com.example.usermanagement.services;
 
-import com.example.usermanagement.models.User;
 import com.example.usermanagement.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
