@@ -24,11 +24,11 @@ public class OrderController {
     public OrderController(OrderService orderService) { this.orderService = orderService; }
 
     @GetMapping
-    public List<OrderProduct> getAllOrders() {return this.orderService.getAllOrders();}
+    public List<Order> getAllOrders() {return this.orderService.getAllOrders();}
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Order createOrder(@Valid @RequestBody Order order) { return this.orderService.createOrder(order);}
+    public Order createOrder(@RequestBody Order order) { return this.orderService.createOrder(order);}
 
     @GetMapping("/{id}")
     public Order getOrderById(@PathVariable Long id) {

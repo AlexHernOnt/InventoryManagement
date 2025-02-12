@@ -1,5 +1,6 @@
 package com.example.usermanagement.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderProduct> orderproducts = new ArrayList<>();
 
+    @JsonIgnore
     private State state = State.NO_COMPLETED;
 
     public Order() {

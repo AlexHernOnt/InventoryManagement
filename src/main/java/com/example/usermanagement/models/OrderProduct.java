@@ -11,14 +11,14 @@ public class OrderProduct {
     private OrderProductKey orderProductKey;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     @MapsId("orderId")
 
     private Order order;
 
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     @MapsId("productId")
     private Product product;
 
