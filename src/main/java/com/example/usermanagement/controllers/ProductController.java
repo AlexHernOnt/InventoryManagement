@@ -27,7 +27,7 @@ public class ProductController {
     public Product getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
-//
+
 //    @PutMapping("/reduceStock/{Id}")
 //    public String reduceStock(@Valid @RequestBody Product product) {
 //        stockService.reduceStock(productId, product.getStock());
