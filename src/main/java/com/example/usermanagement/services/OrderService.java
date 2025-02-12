@@ -1,7 +1,6 @@
 package com.example.usermanagement.services;
 
 import com.example.usermanagement.models.Order;
-import com.example.usermanagement.models.User;
 import com.example.usermanagement.repositories.OrderProductRepository;
 import com.example.usermanagement.repositories.OrderRepository;
 import com.example.usermanagement.repositories.UserRepository;
